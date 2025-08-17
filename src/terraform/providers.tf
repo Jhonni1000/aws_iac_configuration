@@ -13,8 +13,8 @@ provider "aws" {
 
 terraform {
   backend "s3" {
-    bucket = "aws-iac-config-19"
-    key    = "terraform.tfstate"
+    bucket = "tf-statefile-19999"
+    key    = "dev/eks-cluster/terraform.tfstate"
     region = "eu-north-1"
   }
 }
