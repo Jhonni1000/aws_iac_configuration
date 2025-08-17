@@ -15,25 +15,20 @@ permissions:
     contents: read
     id-token: write
 
-env:
-    AWS_ROLE_ARN: ${{ vars.AWS_ROLE_ARN }}
-    AWS_REGION: ${{ vars.AWS_REGION }}
-    environment: ${{ github.environment }}
-    TF_WORKING_DIR: ./src/terraform
-
 jobs:
     Terraform:
         name: Terraform Test Deployment
         runs-on: ubuntu-latest
+        environment: ${{ github.ref_name == 'main' && 'production' || github.ref_name == 'test' && 'staging' || 'dev' }}
         defaults:
             run:
-                working-directory: ${{ env.TF_WORKING_DIR }}
+                working-directory: ${{ vars.TF_WORKING_DIR }}
         steps:
             - name: Configure AWS Credentials with Secrets Region
               uses: aws-actions/configure-aws-credentials@v4
               with: 
-                role-to-assume: ${{ env.AWS_ROLE_ARN }}
-                aws-region: ${{ env.AWS_REGION }}
+                role-to-assume: ${{ vars.AWS_ROLE_ARN }}
+                aws-region: ${{ vars.AWS_REGION }}
             - name: Checkout Code
               uses: actions/checkout@v4
       
@@ -49,10 +44,10 @@ jobs:
                 terraform init
             - name: Terraform Plan
               run: |
-                terraform plan 
+                terraform plan -var "environment=${{ github.environment }}"
             - name: Terraform Apply
               run: |
-                terraform apply -auto-approve -var "environment= ${{ env.environment }}"
+                terraform apply -auto-approve -var "environment=${{ github.environment }}"
 
 
 
