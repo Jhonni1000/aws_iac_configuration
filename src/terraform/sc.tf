@@ -12,3 +12,14 @@ resource "aws_servicecatalog_product" "ec2_product" {
 
   depends_on = [ aws_s3_bucket_object.ec2_template ]
 }
+
+resource "aws_servicecatalog_portfolio" "ec2_product" {
+  name        = "EC2-Portfolio"
+  description = "Portfolio for EC2 products"
+  provider_name = "OPAKI"
+}
+
+resource "aws_servicecatalog_portfolio_product_association" "example" {
+  portfolio_id = aws_servicecatalog_portfolio.ec2_product.id
+  product_id   = aws_servicecatalog_product.ec2_product.id
+}
