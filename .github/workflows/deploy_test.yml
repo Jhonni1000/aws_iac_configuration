@@ -15,6 +15,9 @@ permissions:
     contents: read
     id-token: write
 
+env:
+    TF_WORKING_DIR: ./src/terraform
+
 jobs:
     Terraform:
         name: Terraform Test Deployment
@@ -22,7 +25,7 @@ jobs:
         environment: ${{ github.ref_name == 'main' && 'production' || github.ref_name == 'test' && 'staging' || 'dev' }}
         defaults:
             run:
-                working-directory: ${{ vars.TF_WORKING_DIR }}
+                working-directory: ${{ env.TF_WORKING_DIR }}
         steps:
             - name: Configure AWS Credentials with Secrets Region
               uses: aws-actions/configure-aws-credentials@v4
