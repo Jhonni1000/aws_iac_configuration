@@ -46,14 +46,13 @@ jobs:
               run: |
                 terraform init \
                     -backend-config="bucket=${{ vars.TF_S3_BUCKET }}" \
-                    -backend-config="key=${{ vars.TF_S3_KEY }}" \
                     -backend-config="region=${{ vars.AWS_REGION }}"
             - name: Terraform Plan
               run: |
-                terraform plan -var-file="${{ vars.TF_S3_KEY }}" -var "environment=${{ github.environment }}"
+                terraform plan -var "environment=${{ github.environment }}"
             - name: Terraform Apply
               run: |
-                terraform apply -auto-approve -var-file="${{ vars.TF_S3_KEY }}" -var "environment=${{ github.environment }}"
+                terraform apply -auto-approve -var "environment=${{ github.environment }}"
 
 
 
