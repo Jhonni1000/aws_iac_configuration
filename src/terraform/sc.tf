@@ -19,7 +19,7 @@ resource "aws_servicecatalog_portfolio" "ec2_product" {
   provider_name = "OPAKI"
 }
 
-resource "aws_servicecatalog_portfolio_product_association" "example" {
+resource "aws_servicecatalog_product_portfolio_association" "ec2_product" {
   portfolio_id = aws_servicecatalog_portfolio.ec2_product.id
   product_id   = aws_servicecatalog_product.ec2_product.id
 }
