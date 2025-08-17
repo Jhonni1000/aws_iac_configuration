@@ -44,9 +44,7 @@ jobs:
               continue-on-error: true
             - name: Terraform Init
               run: |
-                terraform init \
-                    -backend-config="bucket=${{ vars.TF_S3_BUCKET }}" \
-                    -backend-config="region=${{ vars.AWS_REGION }}"
+                terraform init 
             - name: Terraform Plan
               run: |
                 terraform plan -var "environment=${{ github.environment }}"
