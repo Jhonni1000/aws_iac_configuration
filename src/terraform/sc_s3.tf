@@ -4,11 +4,9 @@ resource "aws_s3_bucket" "cfn_bucket" {
 }
 
 resource "aws_s3_bucket_object" "ec2_template" {
-  bucket = aws_s3_bucket.cfn_bucket.id
-  key    = "ec2-product.yaml"
-  source = "/scripts/ec2_product_v1.yml.tpl"
-
-  content = templatefile("ec2-product.yaml.tpl", {
-    ami_id = data.aws_ami.ami_latest.id
-  })
+    bucket = aws_s3_bucket.cfn_bucket.id
+    key    = "ec2-product.yml"
+    acl    = "private"
+    
+    content = templatefile("/scripts/ec2_product_v1.yml.tpl", {ami_id = data.aws_ami.ami_latest.id})
 }
