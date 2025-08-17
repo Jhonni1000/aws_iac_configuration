@@ -9,4 +9,6 @@ resource "aws_servicecatalog_product" "ec2_product" {
     template_url = "https://servicecatalog-templates-12345/ec2_product_v1.yml.tpl"
     type        = "CLOUD_FORMATION_TEMPLATE"
   }
+
+  depends_on = [ aws_s3_bucket_object.ec2_template ]
 }
