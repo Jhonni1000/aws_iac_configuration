@@ -22,7 +22,6 @@ resource "aws_servicecatalog_portfolio" "ec2_product" {
 resource "aws_servicecatalog_product_portfolio_association" "ec2_product" {
   portfolio_id = aws_servicecatalog_portfolio.ec2_product.id
   principal_arn = "arn:aws:iam::738605694254:role/aws-reserved/sso.amazonaws.com/eu-north-1/AWSReservedSSO_AdministratorAccess_ae92e0dac5f28572"
-  principal_type = "IAM_PATTERN"
+  principal_type = "ROLE"
   product_id   = aws_servicecatalog_product.ec2_product.id
-  
 }
