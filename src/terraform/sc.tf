@@ -37,6 +37,6 @@ resource "aws_servicecatalog_constraint" "launch_role" {
   type = "LAUNCH"
   portfolio_id = aws_servicecatalog_portfolio.ec2_product.id
   parameters = jsonencode({
-    "LocalRoleName": "arn:aws:iam::738605694254:role/sc_launch_role"
+    "LocalRoleName": "sc_launch_role"
   })
 }
