@@ -7,36 +7,47 @@ resource "aws_servicecatalog_product" "ec2_product" {
     name         = "v1"
     description  = "Initial version"
     template_url = "https://servicecatalog-templates-12345.s3.eu-north-1.amazonaws.com/ec2_product_v1.yml"
-    type        = "CLOUD_FORMATION_TEMPLATE"
+    type         = "CLOUD_FORMATION_TEMPLATE"
   }
 
-  depends_on = [ aws_s3_bucket_object.ec2_template ]
+  depends_on = [aws_s3_bucket_object.ec2_template]
+}
+
+resource "aws_servicecatalog_provisioning_artifact" "ec2_product" {
+  for_each = local.ec2_product_versions
+
+  product_id   = aws_servicecatalog_product.ec2_product.id
+  name         = each.key
+  template_url = "https://${aws_s3_bucket.cfn_bucket.bucket}.s3.${var.region}.amazonaws.com/ec2/${each.key}/ec2_product.yml"
+  type         = "CLOUD_FORMATION_TEMPLATE"
+
+  depends_on = [aws_s3_bucket_object.ec2_template]
 }
 
 
 resource "aws_servicecatalog_portfolio" "ec2_product" {
-  name        = "EC2-Portfolio"
-  description = "Portfolio for EC2 products"
+  name          = "EC2-Portfolio"
+  description   = "Portfolio for EC2 products"
   provider_name = "OPAKI"
 }
 
 resource "aws_servicecatalog_principal_portfolio_association" "ec2_product" {
-  portfolio_id  = aws_servicecatalog_portfolio.ec2_product.id
-  principal_arn = "arn:aws:iam::738605694254:role/aws-reserved/sso.amazonaws.com/eu-north-1/AWSReservedSSO_AdministratorAccess_ae92e0dac5f28572"
+  portfolio_id   = aws_servicecatalog_portfolio.ec2_product.id
+  principal_arn  = "arn:aws:iam::738605694254:role/aws-reserved/sso.amazonaws.com/eu-north-1/AWSReservedSSO_AdministratorAccess_ae92e0dac5f28572"
   principal_type = "IAM"
 }
 
 resource "aws_servicecatalog_product_portfolio_association" "portfolio_association" {
   portfolio_id = aws_servicecatalog_portfolio.ec2_product.id
-  product_id = aws_servicecatalog_product.ec2_product.id
+  product_id   = aws_servicecatalog_product.ec2_product.id
 }
 
 resource "aws_servicecatalog_constraint" "launch_role" {
-  description = "Launch Role Constraints"
-  product_id = aws_servicecatalog_product.ec2_product.id
-  type = "LAUNCH"
+  description  = "Launch Role Constraints"
+  product_id   = aws_servicecatalog_product.ec2_product.id
+  type         = "LAUNCH"
   portfolio_id = aws_servicecatalog_portfolio.ec2_product.id
   parameters = jsonencode({
-    "LocalRoleName": "sc_launch_role"
+    "LocalRoleName" : "sc_launch_role"
   })
 }
