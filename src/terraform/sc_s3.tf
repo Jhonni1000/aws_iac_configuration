@@ -9,7 +9,7 @@ resource "aws_s3_bucket" "cfn_bucket" {
   bucket = "servicecatalog-templates-12345"
 }
 
-resource "aws_s3_bucket_object" "ec2_template" {
+resource "aws_s3_bucket_object" "ec2_template_initial_version" {
   for_each = local.ec2_product_versions
 
   bucket = aws_s3_bucket.cfn_bucket.id
