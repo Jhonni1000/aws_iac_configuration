@@ -1,5 +1,5 @@
 AWSTemplateFormatVersion: "2010-09-09"
-Description: "EC2 SSM-managed instance"
+Description: "EC2 SSM-managed instance Initial Version"
 
 Parameters:
   InstanceType:
@@ -12,7 +12,7 @@ Resources:
   MyEC2:
     Type: AWS::EC2::Instance
     Properties:
-      ImageId: "${ami_id}"
+      ImageId: "ami-0c4fc5dcabc9df21d"
       InstanceType: !Ref InstanceType
       IamInstanceProfile: !Ref EC2SSMInstanceProfile
       KeyName: !Ref KeyName

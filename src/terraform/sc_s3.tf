@@ -16,9 +16,7 @@ resource "aws_s3_bucket_object" "ec2_template_initial_version" {
   key    = "ec2/initial_version/ec2_product.yml"
   acl    = "private"
 
-  content = templatefile("${path.module}/scripts/ec2_product_initial_verision.yml.tpl", {
-    ami_id = data.aws_ami.ami_latest.id
-  })
+  content = templatefile("${path.module}/scripts/ec2_product_initial_verision.yml.tpl")
 }
 
 resource "aws_s3_bucket_object" "ec2_template" {
