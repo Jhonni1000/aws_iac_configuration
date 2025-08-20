@@ -4,9 +4,7 @@ Description: "EC2 SSM-managed instance"
 Parameters:
   InstanceType:
     Type: String
-    Default: t2.micro
-  KeyName:
-    Type: AWS::EC2::KeyPair::KeyName
+    Default: t3.micro
 
 Resources:
   MyEC2:
@@ -15,7 +13,6 @@ Resources:
       ImageId: "${ami_id}"
       InstanceType: !Ref InstanceType
       IamInstanceProfile: !Ref EC2SSMInstanceProfile
-      KeyName: !Ref KeyName
       UserData:
         Fn::Base64: !Sub |
           #!/bin/bash
