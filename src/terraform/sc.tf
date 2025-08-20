@@ -6,7 +6,7 @@ resource "aws_servicecatalog_product" "ec2_product" {
   provisioning_artifact_parameters {
     name         = "v1"
     description  = "Initial version"
-    template_url = "https://servicecatalog-templates-12345.s3.eu-north-1.amazonaws.com/ec2/initial_version/ec2_product.yml.tpl"
+    template_url = "https://servicecatalog-templates-12345.s3.eu-north-1.amazonaws.com/ec2/initial_version/ec2_product.yml"
     type         = "CLOUD_FORMATION_TEMPLATE"
   }
 
