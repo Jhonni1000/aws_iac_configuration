@@ -10,13 +10,11 @@ resource "aws_s3_bucket" "cfn_bucket" {
 }
 
 resource "aws_s3_bucket_object" "ec2_template_initial_version" {
-  for_each = local.ec2_product_versions
-
   bucket = aws_s3_bucket.cfn_bucket.id
   key    = "ec2/initial_version/ec2_product.yml"
   acl    = "private"
 
-  content = templatefile("${path.module}/scripts/ec2_product_initial_verision.yml.tpl")
+  content = file("${path.module}/scripts/ec2_product_initial_version.yml.tpl")
 }
 
 resource "aws_s3_bucket_object" "ec2_template" {
