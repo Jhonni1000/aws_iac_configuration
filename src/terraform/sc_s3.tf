@@ -1,5 +1,5 @@
 resource "aws_s3_bucket" "cfn_bucket" {
-  bucket = "servicecatalog-templates-12345"
+  bucket = "servicecatalog-templates-123456"
 }
 
 resource "aws_s3_bucket_object" "ec2_template" {
