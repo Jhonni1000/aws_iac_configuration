@@ -6,7 +6,7 @@ resource "aws_servicecatalog_product" "ec2_product" {
   provisioning_artifact_parameters {
     name         = "v1"
     description  = "Initial version"
-    template_url = "https://servicecatalog-templates-12345.s3.eu-north-1.amazonaws.com/ec2/initial_version/ec2_product.yml"
+    template_url = "https://servicecatalog-templates-123456.s3.eu-north-1.amazonaws.com/ec2/initial_version/ec2_product.yml"
     type         = "CLOUD_FORMATION_TEMPLATE"
   }
 
@@ -33,7 +33,7 @@ resource "aws_servicecatalog_portfolio" "ec2_product" {
 
 resource "aws_servicecatalog_principal_portfolio_association" "ec2_product" {
   portfolio_id   = aws_servicecatalog_portfolio.ec2_product.id
-  principal_arn  = "arn:aws:iam::738605694254:role/aws-reserved/sso.amazonaws.com/eu-north-1/AWSReservedSSO_AdministratorAccess_ae92e0dac5f28572"
+  principal_arn  = "arn:aws:iam::911337539493:role/sc_launch_role"
   principal_type = "IAM"
 }
 
