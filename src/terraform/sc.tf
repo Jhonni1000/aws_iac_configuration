@@ -33,7 +33,7 @@ resource "aws_servicecatalog_portfolio" "ec2_product" {
 
 resource "aws_servicecatalog_principal_portfolio_association" "ec2_product" {
   portfolio_id   = aws_servicecatalog_portfolio.ec2_product.id
-  principal_arn  = "arn:aws:iam::911337539493:role/sc_launch_role"
+  principal_arn  = "arn:aws:iam::911337539493:root"
   principal_type = "IAM"
 }
 
