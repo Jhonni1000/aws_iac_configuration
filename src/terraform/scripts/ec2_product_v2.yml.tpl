@@ -1,3 +1,4 @@
+---
 AWSTemplateFormatVersion: "2010-09-09"
 Description: "EC2 SSM-managed instance"
 
@@ -5,7 +6,12 @@ Parameters:
   InstanceType:
     Type: String
     Default: t3.micro
-
+    AllowedValues:
+      - t3.micro
+      - t3.small
+      - t3.medium
+      - t3.large
+      
 Resources:
   MyEC2:
     Type: AWS::EC2::Instance
