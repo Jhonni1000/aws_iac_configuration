@@ -1,7 +1,6 @@
 locals {
   ec2_product_versions = {
     v1 = "ec2_product_v1.yml.tpl"
-    v2 = "ec2_product_v2.yml.tpl"
   }
 }
 
