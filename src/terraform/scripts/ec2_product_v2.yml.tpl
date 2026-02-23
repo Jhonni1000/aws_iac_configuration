@@ -3,6 +3,24 @@ AWSTemplateFormatVersion: "2010-09-09"
 Description: "EC2 SSM-managed instance"
 
 Parameters:
+  VPCConfig:
+    Type: AWS::EC2::VPC::Id
+    Description: Select a VPC
+
+  SubnetCfg:
+    Type: AWS::EC2::Subnet::Id
+    Description: Select a Subnet
+
+  EC2Storage:
+    Type: Number
+    Default: 30
+    AllowedValues:
+      - 30
+      - 50
+      - 70
+      - 100
+    Description: Select Data Disk Size. Defaults to 30GB 
+
   InstanceType:
     Type: String
     Default: t3.micro
@@ -17,8 +35,20 @@ Resources:
     Type: AWS::EC2::Instance
     Properties:
       ImageId: "${ami_id}"
+      SubnetId: !Ref SubnetCfg
       InstanceType: !Ref InstanceType
       IamInstanceProfile: !Ref EC2SSMInstanceProfile
+      BlockDeviceMappings:
+        - DeviceName: /dev/xvda
+          Ebs:
+            VolumeSize: 20
+            VolumeType: gp3
+            Encrypted: true
+        - DeviceName: /dev/sdf
+          Ebs:
+            VolumeSize: !Ref EC2Storage
+            VolumeType: gp3
+            Encrypted: true
       UserData:
         Fn::Base64: !Sub |
           #!/bin/bash

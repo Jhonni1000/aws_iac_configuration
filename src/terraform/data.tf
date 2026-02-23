@@ -12,3 +12,5 @@ data "aws_ami" "ami_latest" {
   }
   owners = ["099720109477"]
 }
+
+data "aws_caller_identity" "current" {}
