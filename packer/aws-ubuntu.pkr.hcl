@@ -51,8 +51,7 @@ build {
             "sudo systemctl restart ssh",
 
             "sudo apt autoremove -y",
-            "sudo apt clean",
-            "history -c"
+            "sudo apt clean"
                 ]
     }
 }
