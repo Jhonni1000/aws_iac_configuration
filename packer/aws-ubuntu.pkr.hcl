@@ -46,8 +46,8 @@ build {
             "sudo apt install -y unattended-upgrades",
             "sudo dpkg-reconfigure -f noninteractive unattended-upgrades",
 
-            "sudo sed -i 's/^#PermitEmptyPasswords.*/PermitEmptyPasswords no/' /etc/ssh/sshd_config"
-            "sudo sed -i 's/^#ChallengeResponseAuthentication.*/ChallengeResponseAuthentication no/' /etc/ssh/sshd_config"
+            "sudo sed -i 's/^#PermitEmptyPasswords.*/PermitEmptyPasswords no/' /etc/ssh/sshd_config",
+            "sudo sed -i 's/^#ChallengeResponseAuthentication.*/ChallengeResponseAuthentication no/' /etc/ssh/sshd_config",
             "sudo systemctl restart ssh",
 
             "sudo apt autoremove -y",
