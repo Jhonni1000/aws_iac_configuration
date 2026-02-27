@@ -26,7 +26,7 @@ source "amazon-ebs" "ubuntu" {
 }
 
 build {
-    name = "ami-build"
+    name = "ec2_ubuntu_ami-build"
     sources = [ 
         "source.amazon-ebs.ubuntu" 
     ]
