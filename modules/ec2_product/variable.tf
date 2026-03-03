@@ -15,7 +15,8 @@ variable "initial_template_file" {
 
 variable "template_vars" {
   description = "Variables for Template File funtion"
-  type = string
+  type = map(any)
+  default = {}
 }
 
 variable "ec2_product_versions" {
