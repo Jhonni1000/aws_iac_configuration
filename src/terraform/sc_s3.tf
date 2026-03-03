@@ -56,7 +56,7 @@ module "ec2_service_catalog_product" {
   product_owner = "OPAKI"
   product_name = "Provisioned-EC2"
   template_bucket_name = "servicecatalog-templates-123456"
-  principal_arn = "arn:aws:iam::911337539493:root"
+  principal_arn = "arn:aws:iam::${data.aws_caller_identity.current.account_id}:root"
   launch_role_name = "sc_launch_role"
   template_vars = {}
   initial_template_file = "${path.module}/scripts/ec2_product_initial_version.yml.tpl"
