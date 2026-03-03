@@ -13,6 +13,11 @@ variable "initial_template_file" {
     type = string
 }
 
+variable "template_vars" {
+  description = "Variables for Template File funtion"
+  type = string
+}
+
 variable "ec2_product_versions" {
   description = "Map of product version names to template file paths"
   type        = map(string)

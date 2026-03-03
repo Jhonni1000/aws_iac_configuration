@@ -17,7 +17,7 @@ resource "aws_s3_bucket_object" "ec2_template" {
   key    = "ec2/${each.key}/ec2_product.yml"
   acl    = "private"
 
-  content = templatefile(each.value)
+  content = templatefile(each.value, var.template_vars)
 }
 
 data "aws_iam_policy_document" "s3_policy" {
