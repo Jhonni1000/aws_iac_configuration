@@ -4,7 +4,7 @@ Description: "EC2 SSM-managed instance Initial Version"
 Parameters:
   InstanceType:
     Type: String
-    Default: t2.micro
+    Default: t3.micro
   KeyName:
     Type: AWS::EC2::KeyPair::KeyName
 

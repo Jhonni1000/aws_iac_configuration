@@ -3,5 +3,5 @@
 #     type = "String"
 #     description = "Packer EC2 Ubuntu AMI"
 #     overwrite = true
-#     value = var.ec2_ami
+#     value = data.aws_ami.packer_ami_id.id
 # }

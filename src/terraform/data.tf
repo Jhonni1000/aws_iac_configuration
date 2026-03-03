@@ -1,16 +1,11 @@
-data "aws_ami" "ami_latest" {
+data "aws_ami" "packer_ami_id" {
   most_recent = true
+  owners = [ "self" ]
 
   filter {
-    name   = "name"
-    values = ["ubuntu/images/hvm-ssd/ubuntu-focal-20.04-amd64-server-*"]
+    name = "OS"
+    values = "linux"
   }
-
-  filter {
-    name   = "virtualization-type"
-    values = ["hvm"]
-  }
-  owners = ["099720109477"]
 }
 
 data "aws_caller_identity" "current" {}
