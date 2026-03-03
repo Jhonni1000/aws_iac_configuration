@@ -1,4 +1,4 @@
-data "aws_ami" "packer_ami_id" {
+data "aws_ami" "packer_ami" {
   most_recent = true
   owners = [ "self" ]
 
