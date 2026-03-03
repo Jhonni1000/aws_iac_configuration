@@ -51,7 +51,7 @@
 
 
 module "ec2_service_catalog_product" {
-  source = "../../modules/ec2_product"
+  source = "./modules/ec2_product"
   portfolio_name = "EC2-Portfolio"
   product_owner = "OPAKI"
   product_name = "Provisioned-EC2"
