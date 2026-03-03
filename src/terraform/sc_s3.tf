@@ -62,6 +62,7 @@ module "ec2_service_catalog_product" {
   initial_template_file = "${path.module}/scripts/ec2_product_initial_version.yml.tpl"
   ec2_product_versions = {
     v1 = "${path.module}/scripts/ec2_product_v1.yml.tpl",
-    v2 = "${path.module}/scripts/ec2_product_v2.yml.tpl"
+    v2 = "${path.module}/scripts/ec2_product_v2.yml.tpl",
+    v3 = "${path.module}/scripts/ec2_product_v3.yml.tpl"
   }
 }
