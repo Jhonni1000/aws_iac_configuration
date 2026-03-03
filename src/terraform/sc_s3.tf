@@ -50,18 +50,18 @@
 # }
 
 
-# module "ec2_service_catalog_product" {
-#   source = "./modules/ec2_product"
-#   portfolio_name = "EC2-Portfolio"
-#   product_owner = "OPAKI"
-#   product_name = "Provisioned-EC2"
-#   template_bucket_name = "servicecatalog-templates-123456"
-#   principal_arn = "arn:aws:iam::911337539493:root"
-#   launch_role_name = "sc_launch_role"
-#   template_vars = {}
-#   initial_template_file = "${path.module}/scripts/ec2_product_initial_version.yml.tpl"
-#   ec2_product_versions = {
-#     v1 = "${path.module}/scripts/ec2_product_v1.yml.tpl",
-#     v2 = "${path.module}/scripts/ec2_product_v2.yml.tpl"
-#   }
-# }
+module "ec2_service_catalog_product" {
+  source = "./modules/ec2_product"
+  portfolio_name = "EC2-Portfolio"
+  product_owner = "OPAKI"
+  product_name = "Provisioned-EC2"
+  template_bucket_name = "servicecatalog-templates-123456"
+  principal_arn = "arn:aws:iam::911337539493:root"
+  launch_role_name = "sc_launch_role"
+  template_vars = {}
+  initial_template_file = "${path.module}/scripts/ec2_product_initial_version.yml.tpl"
+  ec2_product_versions = {
+    v1 = "${path.module}/scripts/ec2_product_v1.yml.tpl",
+    v2 = "${path.module}/scripts/ec2_product_v2.yml.tpl"
+  }
+}

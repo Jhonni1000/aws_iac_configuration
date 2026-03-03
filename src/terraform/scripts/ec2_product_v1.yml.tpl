@@ -12,7 +12,7 @@ Resources:
   MyEC2:
     Type: AWS::EC2::Instance
     Properties:
-      ImageId: "${ami_id}"
+      ImageId: "{{resolve:ssm:amis/ec2/ubuntu_ami}}"
       InstanceType: !Ref InstanceType
       IamInstanceProfile: !Ref EC2SSMInstanceProfile
       KeyName: !Ref KeyName
