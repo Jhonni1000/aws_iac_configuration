@@ -3,8 +3,8 @@ data "aws_ami" "packer_ami" {
   owners = [ "self" ]
 
   filter {
-    name = "OS"
-    values = ["linux"]
+    name = "name"
+    values = ["packer-linux-aws-*"]
   }
 }
 
