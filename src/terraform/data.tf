@@ -4,7 +4,7 @@ data "aws_ami" "packer_ami_id" {
 
   filter {
     name = "OS"
-    values = "linux"
+    values = ["linux"]
   }
 }
 
