@@ -27,7 +27,7 @@ func getCredentials() {
 		log.Fatalf("Couldn't get caller credentials %v", err)
 	}
 
-	fmt.Println(*caller.Arn)
+	fmt.Println("Caller Identity %s", *caller.Arn)
 }
 
 func getInstanceState(instanceId string, awsRegion string) {
