@@ -56,7 +56,10 @@ module "ec2_service_catalog_product" {
   product_owner = "OPAKI"
   product_name = "Provisioned-EC2"
   template_bucket_name = "servicecatalog-templates-123456"
-  principal_arn = ["arn:aws:iam::${data.aws_caller_identity.current.account_id}:root", "arn:aws:iam::${data.aws_caller_identity.current.account_id}:role/github_service_catalog_role"]
+  principal_arn = [ 
+    "arn:aws:iam::${data.aws_caller_identity.current.account_id}:role/aws-reserved/sso.amazonaws.com/eu-north-1/AWSReservedSSO_AdministratorAccess_6ff2f946ccd6a7d9", 
+    "arn:aws:iam::${data.aws_caller_identity.current.account_id}:role/aws-reserved/sso.amazonaws.com/eu-north-1/AWSReservedSSO_PowerUserAccess_144f1701746000b8",
+    "arn:aws:iam::${data.aws_caller_identity.current.account_id}:role/github_service_catalog_role" ]
   launch_role_name = "sc_launch_role"
   template_vars = {}
   initial_template_file = "${path.module}/scripts/ec2_product_initial_version.yml.tpl"
