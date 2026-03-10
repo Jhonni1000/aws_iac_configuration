@@ -1,7 +1,7 @@
 resource "aws_servicecatalog_provisioned_product" "ec2_sc_test" {
     name = "ec2_test_instance"
     product_name = "Provisioned-EC2"
-    provisioning_artifact_name = "v3"
+    provisioning_artifact_name = "v4"
 
     provisioning_parameters {
         key = "EC2Storage"

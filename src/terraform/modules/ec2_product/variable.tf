@@ -41,7 +41,7 @@ variable "portfolio_name" {
 
 variable "principal_arn" {
   description = "ARN of the IAM principal (user, role, or root) to associate with the portfolio"
-  type        = string
+  type        = list(string)
 }
 
 variable "constraint_type" {

@@ -32,8 +32,9 @@ resource "aws_servicecatalog_portfolio" "ec2_product" {
 }
 
 resource "aws_servicecatalog_principal_portfolio_association" "ec2_product" {
+  for_each = toset(var.principal_arn)
   portfolio_id   = aws_servicecatalog_portfolio.ec2_product.id
-  principal_arn  = var.principal_arn
+  principal_arn  = each.value
   principal_type = "IAM"
 }
 
